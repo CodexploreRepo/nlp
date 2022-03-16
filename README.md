@@ -32,10 +32,12 @@
 ## 2.2. BERT Vocab
 - BERT is pre-trained &#8594; Vocab is fixed
 - For unkown words (the words that not exist in BERT's vocab), BERT will use [WordPiece Tokenizer](https://huggingface.co/docs/tokenizers/python/latest/api/reference.html#module-tokenizers.pre_tokenizers) to break the word into the known sub-words
-  - **Note 1**: all Sub-words will start with `##`, except the first sub-word in the word
+  - **Note 1**: all Sub-words will start with `##`, except the first sub-word in the word (See below table)
   - **Note 2**: By splitting words into word pieces, we have already identified that the words "surfboard" and "snowboard" share meaning through the wordpiece "##board".
     - &#8594; [WordPiece Tokenizer](https://huggingface.co/docs/tokenizers/python/latest/api/reference.html#module-tokenizers.pre_tokenizers) allows BERT to easily identify related words as they will usually share some of the same input tokens, which are then fed into the first layers of BERT.
 
+<div align="center">
+  
 | Word          | Token(s)                           |
 | ------------- | ---------------------------------- |
 | surf          | \['surf'\]                         |
@@ -46,5 +48,7 @@
 | snowboarding  | \['snow', '##board', '##ing'\]       |
 | snow          | \['snow'\]                         |
 | snowing       | \['snow', '##ing'\]                 |
+
+</div>
 
 [(Back to top)](#table-of-contents)
