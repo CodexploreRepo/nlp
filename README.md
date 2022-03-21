@@ -56,7 +56,7 @@ model.save(model_path)
 print("model saved")
 
 ```
-- Load Model
+- Load Model & access Vocabs
 ```Python
 model = word2vec.Word2Vec.load(model_path)
 print(len(model.wv.vocab))
