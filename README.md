@@ -21,7 +21,7 @@
 
 ### 1.1.1. Word2Vec Implementation in Python
 - Gensim library in Python will enable us to develop word embeddings by training our own word2vec models on a custom corpus either with CBOW of skip-grams algorithms.
-- Training Input format: **a list of lists of tokens**, `sentences=[["sent", "one"], ["two"], ["three"]]`
+- Training Input format: **a list of lists of tokens**, `sentences=[["sent", "one"], ["sent", "two", "tokens"], ["three"]]`
 ```Python
 # Creating the model and setting values for the various parameters
 num_features = 100  # Word vector dimensionality, can change if word2vec is not working well
