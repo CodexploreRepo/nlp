@@ -56,7 +56,15 @@ model.save(model_path)
 print("model saved")
 
 ```
+- Load Model
+```Python
+model = word2vec.Word2Vec.load(model_path)
+print(len(model.wv.vocab))
 
+#print the words in 
+for word, vocab_obj in model.wv.vocab.items():
+  print(word)
+```
 
 ## 1.2. Doc2Vec
 
