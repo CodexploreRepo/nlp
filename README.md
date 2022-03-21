@@ -25,6 +25,9 @@
   - `sentences= [[tokens of sent 1], [tokens of sent2], [tokens of sent ]]=[["sent", "one"], ["sent", "two", "tokens"], ["three"]]`
   - **Note**: Stopwords can be useful to undersand the semantics of the sentence. **Therefore stopwords are not removed while creating the word2vec model**.
 ```Python
+# Initializing the train model
+from gensim.models import word2vec
+
 # Creating the model and setting values for the various parameters
 num_features = 100  # Word vector dimensionality, can change if word2vec is not working well
 min_word_count = 40 # Minimum word count (words with occurrence less than this count will be ignored)
