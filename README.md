@@ -14,7 +14,7 @@
 ## 1.1. Word2Vec
 - In the **word2vec** architecture, the two algorithm names: 
   - `continuous bag of words` ([CBOW](https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-cbow.html)):  to predict the current target word (the center word) based on the source context words (surrounding words)
-  - `skip-gram` (SG) - **easier to implement**: to find the most related words (context words) for a given center word
+  - `skip-gram` (SG): **easier to implement**: to find the most related words (context words) for a given center word
 
 <p align="center">
 <img width="591" alt="Screenshot 2022-03-20 at 23 39 52" src="https://user-images.githubusercontent.com/64508435/159170384-3f412eb4-3dd5-4618-9bef-4cfd1b3aced3.png"></p>
@@ -34,7 +34,7 @@ min_word_count = 40 # Minimum word count (words with occurrence less than this c
 num_workers = 4     # Number of parallel threads
 context = 10        # Context window size
 downsampling = 1e-3 # (0.001) Downsample setting for frequent words: prob to select the negative words
-sg = 1              # The training algorithm, either CBOW(0) or skip gram(1). The default training algorithm is CBOW
+
 
 print("Training model....")
 model = word2vec.Word2Vec(sentences,\
@@ -43,7 +43,7 @@ model = word2vec.Word2Vec(sentences,\
                           min_count=min_word_count,\
                           window=context,
                           sample=downsampling,
-                          sg=sg)
+                          )
 
 # To make the model memory efficient
 model.init_sims(replace=True)
