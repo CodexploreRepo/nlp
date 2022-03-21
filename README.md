@@ -34,7 +34,7 @@ min_word_count = 40 # Minimum word count (words with occurrence less than this c
 num_workers = 4     # Number of parallel threads
 context = 10        # Context window size
 downsampling = 1e-3 # (0.001) Downsample setting for frequent words: prob to select the negative words
-
+sg = 1              # The training algorithm, either CBOW(0) or skip gram(1). The default training algorithm is CBOW
 
 print("Training model....")
 model = word2vec.Word2Vec(sentences,\
@@ -43,6 +43,7 @@ model = word2vec.Word2Vec(sentences,\
                           min_count=min_word_count,\
                           window=context,
                           sample=downsampling,
+                          sg=
                           )
 
 # To make the model memory efficient
