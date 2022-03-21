@@ -42,7 +42,8 @@ model = word2vec.Word2Vec(sentences,\
                           size=num_features,\
                           min_count=min_word_count,\
                           window=context,
-                          sample=downsampling)
+                          sample=downsampling,
+                          sg=sg)
 
 # To make the model memory efficient
 model.init_sims(replace=True)
