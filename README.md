@@ -112,8 +112,7 @@ There are at least two reasons why BERT is a powerful language model:
 
 ### 2.1.3. BERT Installation
 - BERT Installation via the [Huggingface](https://huggingface.co/docs/transformers/model_doc/bert) implementation: `pip install transformers`
-- BERT Resources
-  - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
+
 
 
 ## 2.2. BERT Vocab
@@ -189,3 +188,10 @@ print(bert_input['attention_mask']) #attention_mask , which is a binary mask tha
 
 
 [(Back to top)](#table-of-contents)
+
+# Resources:
+## Reading List:
+### BERT Resources
+- [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
+## To Do:
+- [Word Embedding Visualization](https://github.com/marcellusruben/Word_Embedding_Visualization)
