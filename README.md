@@ -143,14 +143,41 @@ There are at least two reasons why BERT is a powerful language model:
 BERT model expects a sequence of tokens (words) as an input. In each sequence of tokens, there are two special tokens that BERT would expect as an input:
 1. `[CLS]`: This is the first token of every sequence, which stands for classification token.
 2. `[SEP]`: This is the token that makes BERT know which token belongs to which sequence. This special token is mainly important for a next sentence prediction task or question-answering task. If we only have one sequence, then this token will be appended to the end of the sequence.
+3. `[PAD]`: If the tokens in a sequence are less than `max_length`, say in below example `max_length=10`,we can use padding to fill the unused token slots with `[PAD]` token.
 <p align="center">
-<img src="https://user-images.githubusercontent.com/64508435/159829752-4fd781c8-93e9-4ae5-8100-6da51434995c.png" width="400" />
+<img src="https://user-images.githubusercontent.com/64508435/159833009-1cba88a4-da96-4eec-ac82-245e44fa3f91.png" width="400" />
 </p>
 
-Maximum size of tokens that can be fed into BERT model is 512. 
-- If the tokens in a sequence are less than 512, we can use padding to fill the unused token slots with `[PAD]` token.
-- If the tokens in a sequence are longer than 512, then we need to do a **truncation**.
 
+- `'bert-base-cased'`: For datasets from different languages, you might want to use `bert-base-multilingual-cased`. 
+  - Specifically, if your dataset is in German, Dutch, Chinese, Japanese, or Finnish, you might want to use a tokenizer pre-trained specifically in these languages.
+- Maximum size of tokens that can be fed into BERT model is **512**. 
+  - If the tokens in a sequence are longer than 512, then we need to do a **truncation**.
+- `attention_mask`: which is a binary mask that identifies whether a token is a real word or just padding. If the token contains `[CLS]`, `[SEP]`, or any real word, then the mask would be 1. Meanwhile, if the token is just padding or `[PAD]`, then the mask would be 0.
+- `token_type_ids`: binary mask that identifies in which sequence a token belongs. If we only have a single sequence, then all of the token type ids will be 0. For a text classification task, `token_type_ids` is an optional input for our BERT model.
+
+
+```Python
+from transformers import BertTokenizer
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+
+example_test = 'I will watch Memento tonight'
+bert_input = tokenizer(
+            example_test,
+            padding='max_length',
+            max_length = 10,
+            truncation = True,
+            return_tensors='pt'
+)
+
+print(bert_input['input_ids'])
+print(bert_input['token_type_ids']) #token_type_ids , which is a binary mask that identifies in which sequence a token belongs. If we only have a single sequence, then all of the token type ids will be 0.
+print(bert_input['attention_mask']) #attention_mask , which is a binary mask that identifies whether a token is a real word or just padding. 
+
+#tensor([[  101,   146,  1209,  2824,  2508, 26173,  3568,   102,     0,     0]]) - input_ids
+#tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]) - token_type_ids
+#tensor([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0]]) - attention_mask
+```
 ### 2.3.2. BERT Output
 - BERT model then will output an **embedding vector of size 768** in *each of the tokens*.
 - These vectors as an input for different kinds of NLP applications: text classification, next sentence prediction, Named-Entity-Recognition (NER), or question-answering.
