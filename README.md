@@ -6,7 +6,9 @@
   - [1.1. Word2Vec](#11-word2vec) 
   - [1.2. Doc2Vec](#12-doc2vec)
 - [2. BERT](#2-bert)
-  - [2.1. BERT Introduction](#21-bert-introduction) 
+  - [2.1. BERT Introduction](#21-bert-introduction)
+    - [2.1.1. What is BERT ?](#211-what-is-bert)
+    - [2.1.2. Why BERT ?](#212-why-bert)  
   - [2.2. BERT Vocab](#22-bert-vocab)
 
 
@@ -80,12 +82,33 @@ for word, vocab_obj in model.wv.vocab.items():
 
 # 2. BERT
 ## 2.1. BERT Introduction
+### 2.1.1. What is BERT
+- BERT is an acronym for Bidirectional Encoder Representations from Transformers.
 - BERT is a departure from the LSTM-based approaches to NLP
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/158507772-3cceec68-d1c4-4b1a-b589-1bc87f4ae740.png" width="400" />
 </p>
 
-- BERT Installation via the [Huggingface](https://huggingface.co/docs/transformers/model_doc/bert) implementation: `pip install pytorch-pretrained-bert`
+- BERT architecture consists of several **Transformer encoders** stacked together. 
+  - Each Transformer encoder encapsulates two sub-layers: 
+    - A self-attention layer 
+    - A feed-forward layer.
+ 
+- There are two different BERT models:
+  - BERT **base**, which is a BERT model consists of 12 layers of Transformer encoder, 12 attention heads, 768 hidden size, and 110M parameters.
+  - BERT **large**, which is a BERT model consists of 24 layers of Transformer encoder,16 attention heads, 1024 hidden size, and 340 parameters.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/159828395-014a36f8-e459-4a2f-826e-49a38deb3d31.png" width="400" />
+</p>
+
+### 2.1.2. Why BERT
+There are at least two reasons why BERT is a powerful language model:
+1. It is pre-trained on unlabeled data extracted from BooksCorpus, which has 800M words, and from Wikipedia, which has 2,500M words.
+2. As the name suggests, it is pre-trained by utilizing the bidirectional nature of the encoder stacks. This means that BERT learns information from a sequence of words not only from left to right, but also from right to left.
+
+
+
+- BERT Installation via the [Huggingface](https://huggingface.co/docs/transformers/model_doc/bert) implementation: `pip install transformer`
 - BERT Resources
   - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
 
