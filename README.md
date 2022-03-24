@@ -189,11 +189,11 @@ print(bert_input['attention_mask']) #attention_mask , which is a binary mask tha
 
 [(Back to top)](#table-of-contents)
 
-# Resources:
-## Reading List:
+# Resources
+## Reading List
 ### BERT Resources
 - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
-## To Do:
+## Todo List
 - [Word Embedding Visualization](https://github.com/marcellusruben/Word_Embedding_Visualization)
 
 [(Back to top)](#table-of-contents)
