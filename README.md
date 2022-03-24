@@ -8,9 +8,12 @@
 - [2. BERT](#2-bert)
   - [2.1. BERT Introduction](#21-bert-introduction)
     - [2.1.1. What is BERT ?](#211-what-is-bert)
-    - [2.1.2. Why BERT ?](#212-why-bert)  
+    - [2.1.2. Why BERT ?](#212-why-bert)
+    - [2.1.3. BERT Installation](#213-bert-installation)  
   - [2.2. BERT Vocab](#22-bert-vocab)
-
+  - [2.3. BERT Input and Output](#23-bert-input-and-output)
+    - [2.3.1. BERT Input](#231-bert-input)
+    - [2.3.2. BERT Output](#232-bert-output) 
 
 # 1. Word2Vec vs Doc2Vec
 ## 1.1. Word2Vec
@@ -107,10 +110,11 @@ There are at least two reasons why BERT is a powerful language model:
 2. As the name suggests, it is pre-trained by utilizing the bidirectional nature of the encoder stacks. This means that BERT learns information from a sequence of words not only from left to right, but also from right to left.
 
 
-
+### 2.1.3. BERT Installation
 - BERT Installation via the [Huggingface](https://huggingface.co/docs/transformers/model_doc/bert) implementation: `pip install transformer`
 - BERT Resources
   - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
+
 
 ## 2.2. BERT Vocab
 - BERT is pre-trained &#8594; Vocab is fixed
@@ -133,5 +137,28 @@ There are at least two reasons why BERT is a powerful language model:
 | snowing       | \['snow', '##ing'\]                 |
 
 </div>
+
+## 2.3. BERT Input and Output
+### 2.3.1. BERT Input
+BERT model expects a sequence of tokens (words) as an input. In each sequence of tokens, there are two special tokens that BERT would expect as an input:
+1. `[CLS]`: This is the first token of every sequence, which stands for classification token.
+2. `[SEP]`: This is the token that makes BERT know which token belongs to which sequence. This special token is mainly important for a next sentence prediction task or question-answering task. If we only have one sequence, then this token will be appended to the end of the sequence.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/159829752-4fd781c8-93e9-4ae5-8100-6da51434995c.png" width="400" />
+</p>
+
+Maximum size of tokens that can be fed into BERT model is 512. 
+- If the tokens in a sequence are less than 512, we can use padding to fill the unused token slots with `[PAD]` token.
+- If the tokens in a sequence are longer than 512, then we need to do a **truncation**.
+
+### 2.3.2. BERT Output
+- BERT model then will output an **embedding vector of size 768** in *each of the tokens*.
+- These vectors as an input for different kinds of NLP applications: text classification, next sentence prediction, Named-Entity-Recognition (NER), or question-answering.
+  - For example:  a text classification task, we focus our attention on the embedding vector output from the special `[CLS]` token. This means that we’re going to use the embedding vector of size 768 from `[CLS]` token as an input for our classifier, which then will output a vector of size the number of classes in our classification task.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/159830486-08bff517-da7b-4980-9f4e-a32313eb6564.png" width="400" />
+</p>
+
+
 
 [(Back to top)](#table-of-contents)
