@@ -14,7 +14,7 @@
   - [2.3. BERT Input and Output](#23-bert-input-and-output)
     - [2.3.1. BERT Input](#231-bert-input)
     - [2.3.2. BERT Output](#232-bert-output) 
-
+- [Resources](#resources)
 # 1. Word2Vec vs Doc2Vec
 ## 1.1. Word2Vec
 - In the **word2vec** architecture, the two algorithm names: 
@@ -195,3 +195,5 @@ print(bert_input['attention_mask']) #attention_mask , which is a binary mask tha
 - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
 ## To Do:
 - [Word Embedding Visualization](https://github.com/marcellusruben/Word_Embedding_Visualization)
+
+[(Back to top)](#table-of-contents)
