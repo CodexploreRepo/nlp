@@ -174,9 +174,9 @@ print(bert_input['input_ids'])
 print(bert_input['token_type_ids']) #token_type_ids , which is a binary mask that identifies in which sequence a token belongs. If we only have a single sequence, then all of the token type ids will be 0.
 print(bert_input['attention_mask']) #attention_mask , which is a binary mask that identifies whether a token is a real word or just padding. 
 
-#tensor([[  101,   146,  1209,  2824,  2508, 26173,  3568,   102,     0,     0]]) - input_ids
-#tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]) - token_type_ids
-#tensor([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0]]) - attention_mask
+>>> tensor([[  101,   146,  1209,  2824,  2508, 26173,  3568,   102,     0,     0]]) #input_ids
+>>> tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])                                         #token_type_ids
+>>> tensor([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0]])                                         #attention_mask
 ```
 - We also can decode the `input_ids` back to the real words
 
