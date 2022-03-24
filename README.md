@@ -178,6 +178,15 @@ print(bert_input['attention_mask']) #attention_mask , which is a binary mask tha
 #tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]) - token_type_ids
 #tensor([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0]]) - attention_mask
 ```
+- We also can decode the `input_ids` back to the real words
+
+```Python
+example_text = tokenizer.decode(bert_input.input_ids[0])
+
+print(example_text)
+>>>'[CLS] I will watch Memento tonight [SEP] [PAD] [PAD]'
+```
+
 ### 2.3.2. BERT Output
 - BERT model then will output an **embedding vector of size 768** in *each of the tokens*.
 - These vectors as an input for different kinds of NLP applications: text classification, next sentence prediction, Named-Entity-Recognition (NER), or question-answering.
