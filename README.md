@@ -7,6 +7,9 @@
     - [1.1.1. Bag of Words](#111-bag-of-words) 
     - [1.1.2. Latent Dirichlet allocation (LDA)](#112-latent-dirichlet-allocation)
   - [1.2. Unsupervised Document Embedding Techniques](#12-unsupervised-document-embedding-techniques)
+    - [1.2.1. Word2Vec](#121-word2vec)
+    - [1.2.2. Averaging Word Embeddings](#122-averaging-word-embeddings)
+    - [1.2.3. Paragraph vectors (doc2vec)](#123-doc2vec)
 - [2. BERT](#2-bert)
   - [2.1. BERT Introduction](#21-bert-introduction)
     - [2.1.1. What is BERT ?](#211-what-is-bert)
@@ -16,7 +19,7 @@
   - [2.3. BERT Input and Output](#23-bert-input-and-output)
     - [2.3.1. BERT Input](#231-bert-input)
     - [2.3.2. BERT Output](#232-bert-output) 
-- [3. Word2Vec vs Doc2Vec](#3-word2vec-vs-doc2vec)
+- [3. Word2Vec vs Doc2Vec Implementation](#3-word2vec-vs-doc2vec-implementation)
   - [3.1. Word2Vec](#31-word2vec) 
   - [3.2. Doc2Vec](#32-doc2vec)
 - [Resources](#resources)
@@ -73,6 +76,31 @@ tfidf_vec = TfidfVectorizer(
 [(Back to top)](#table-of-contents)
 
 ## 1.2. Unsupervised Document Embedding Techniques
+- **Distributional hypothesis** in linguistics is derived from the semantic theory of language usage, i.e. words that are used and occur in the same contexts tend to purport similar meanings. The underlying idea that *“a word is characterized by the company it keeps”* was popularized by Firth. The distributional hypothesis is the basis for `statistical semantics`.
+### 1.2.1. Word2Vec
+- In the **word2vec** architecture, the two algorithm names: 
+  - `continuous bag of words` ([CBOW](https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-cbow.html)):  to predict the current target word (the center word) based on the source context words (surrounding words)
+  - `skip-gram` (SG): **easier to implement**: to find the most related words (context words) for a given center word
+
+<p align="center">
+<img width="591" alt="Screenshot 2022-03-20 at 23 39 52" src="https://user-images.githubusercontent.com/64508435/159170384-3f412eb4-3dd5-4618-9bef-4cfd1b3aced3.png"></p>
+
+### 1.2.2. Averaging Word Embeddings
+- Averaging Word2Vec vectors of words in each document to produce a embedding vector for the document.
+### 1.2.3. Doc2Vec
+#### Paragraph Vectors: Distributed Memory (PV-DM)
+The PV-DM model augments the standard encoder-decoder model by adding a memory vector, aimed at capturing the topic of the paragraph, or context from the input. The training task here is quite similar to that of continuous bag of words; a single word is to be predicted from its context. In this case, the context words are the preceding words, not the surrounding words, as is the paragraph.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/160338673-dfce8bd9-cf35-4f9f-a1e5-094ad6cf3c1b.png" width="400" />
+  <br>The Distributed Memory model of Paragraph Vectors (PV-DM)
+</p>
+
+#### Paragraph Vectors: Distributed Bag of Words (PV-DBOW)
+The second variant of paragraph vectors, despite its name, is perhaps the parallel of word2vec’s skip-gram architecture; the classification task is to predict a single context word using only the paragraph vector. At each iteration of stochastic gradient descent, a text window is sampled, then a single random word is sampled from that window, forming the below classification task.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/160339075-380361f7-39f0-4357-82a8-a2e96d6d0698.png" width="400" />
+  <br>The Distributed Bag of Words model of Paragraph Vectors (PV-DBOW)
+</p>
 
 
 # 2. BERT
@@ -191,16 +219,8 @@ print(example_text)
 [(Back to top)](#table-of-contents)
 
 
-# 3. Word2Vec vs Doc2Vec
+# 3. Word2Vec vs Doc2Vec Implementation
 ## 3.1. Word2Vec
-- In the **word2vec** architecture, the two algorithm names: 
-  - `continuous bag of words` ([CBOW](https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-cbow.html)):  to predict the current target word (the center word) based on the source context words (surrounding words)
-  - `skip-gram` (SG): **easier to implement**: to find the most related words (context words) for a given center word
-
-<p align="center">
-<img width="591" alt="Screenshot 2022-03-20 at 23 39 52" src="https://user-images.githubusercontent.com/64508435/159170384-3f412eb4-3dd5-4618-9bef-4cfd1b3aced3.png"></p>
-
-### 3.1.1. Word2Vec Implementation in Python
 - Gensim library in Python will enable us to develop word embeddings by training our own word2vec models on a custom corpus either with CBOW of skip-grams algorithms.
 - Training Input format: **a list of lists of tokens**
   - `sentences= [[tokens of sent 1], [tokens of sent2], [tokens of sent ]]=[["sent", "one"], ["sent", "two", "tokens"], ["three"]]`
