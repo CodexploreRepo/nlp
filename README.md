@@ -2,7 +2,7 @@
 
 # Table of contents
 - [Table of contents](#table-of-contents)
-- [1. Word2Vec vs Doc2Vec](#1-word2vec-vs-doc2vec)
+- [1. Bag of Words](#1-bag-of-words)
   - [1.1. Word2Vec](#11-word2vec) 
   - [1.2. Doc2Vec](#12-doc2vec)
 - [2. BERT](#2-bert)
@@ -16,7 +16,9 @@
     - [2.3.2. BERT Output](#232-bert-output) 
 - [Resources](#resources)
 
-# 1. Word2Vec vs Doc2Vec
+# 1. Bag of Words
+- **Bag of words**: One of the basic models that you should always try with a classification problem in NLP. 
+- In bag of words, we create a huge sparse matrix that stores counts of all the words in our corpus (corpus = all the documents = all the sentences)
 ## 1.1. Word2Vec
 - In the **word2vec** architecture, the two algorithm names: 
   - `continuous bag of words` ([CBOW](https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-cbow.html)):  to predict the current target word (the center word) based on the source context words (surrounding words)
