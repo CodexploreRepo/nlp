@@ -6,6 +6,7 @@
   - [1.1. Classical Document Embedding Techniques](#11-classical-document-embedding-techniques)
     - [1.1.1. Bag of Words](#111-bag-of-words) 
     - [1.1.2. Latent Dirichlet allocation (LDA)](#112-latent-dirichlet-allocation)
+  - [1.2. Unsupervised Document Embedding Techniques](#12-unsupervised-document-embedding-techniques)
 - [2. BERT](#2-bert)
   - [2.1. BERT Introduction](#21-bert-introduction)
     - [2.1.1. What is BERT ?](#211-what-is-bert)
@@ -70,6 +71,9 @@ tfidf_vec = TfidfVectorizer(
 ### 1.1.2. Latent Dirichlet allocation
 
 [(Back to top)](#table-of-contents)
+
+## 1.2. Unsupervised Document Embedding Techniques
+
 
 # 2. BERT
 ## 2.1. BERT Introduction
@@ -256,6 +260,7 @@ for word, vocab_obj in model.wv.vocab.items():
 
 # Resources
 ## Reading List
+- [Document Embedding Techniques](https://towardsdatascience.com/document-embedding-techniques-fed3e7a6a25d)
 ### BERT Resources
 - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/) 
 ## Todo List
