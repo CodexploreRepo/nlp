@@ -2,7 +2,10 @@
 
 # Table of contents
 - [Table of contents](#table-of-contents)
-- [1. Word-Embedding](#1-word-embedding)
+- [1. Word (Document) Embedding](#1-word-embedding)
+  - [1.1. Classical Document Embedding Techniques](#11-classical-document-embedding-techniques)
+    - [1.1.1. Bag of Words](#111-bag-of-words) 
+    - [1.1.2. Latent Dirichlet allocation (LDA)](#112-latent-dirichlet-allocation)
 - [2. BERT](#2-bert)
   - [2.1. BERT Introduction](#21-bert-introduction)
     - [2.1.1. What is BERT ?](#211-what-is-bert)
@@ -18,12 +21,53 @@
 - [Resources](#resources)
 
 # 1. Word-Embedding
-- **Word embedding** — the mapping of words into numerical vector spaces — has proved to be an incredibly important method for natural language processing (NLP) tasks in recent years, enabling various machine learning models that rely on vector representation as input to enjoy richer representations of text input.
-- **word document**: refer to any sequence of words, ranging from sentences and paragraphs through social media posts all way up to articles, books and more complexly structured text documents (e.g. forms)
--
+- **Word (Document) embedding** — the mapping of words into numerical vector spaces — has proved to be an incredibly important method for natural language processing (NLP) tasks in recent years, enabling various machine learning models that rely on vector representation as input to enjoy richer representations of text input.
+- **Document**: refer to any sequence of words, ranging from sentences and paragraphs through social media posts all way up to articles, books and more complexly structured text documents (e.g. forms)
+## 1.1. Classical Document Embedding Techniques:
+There are 2 established techniques for document embedding: bag-of-words and latent Dirichlet allocation
+### 1.1.1. Bag of Words
+#### `Bag of words` Definition
 - **Bag of words**: One of the basic models that you should always try with a classification problem in NLP. 
-  - In bag of words, we create a huge sparse matrix that stores counts of all the words in our corpus (corpus = all the documents = all the sentences)
+- In bag of words, we create a huge sparse matrix that stores counts of all the words in our corpus (corpus = all the documents = all the sentences)
+- *Bag of words* can be implemented in *Sklearn* using `Count Vectorizer`.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/160330243-957a9f75-89a4-4a7a-9bfa-04a54f94f728.png" width="400" />
+  <br>A bag-of-words representation of an example sentence
+</p>
+
+#### Count Vectorizer
+- This is done by deciding on a set of n words that will form the vocabulary supported by the mapping, and assigning each word in the vocabulary a unique index. 
+- Then, each document is represented by a vector of length n, in which the i-th entry contains the number of occurrences of the word i in the document.
+
+#### TF-IDF Weighting
+- **Term Frequency–Inverse Document Frequency**: re-weights the above word (or n-gram) frequency vectors with the inverse document frequency (IDF) of each word.
+  - `TF` term grows as the word appears more often
+  - `IDF` term increases with the word’s rarity or how common or rare a word appear in the entire document set.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/160331600-b6ba54b2-d1ca-428b-b16f-41620bf2f60a.png" width="400" />
+</p>
+
+
+#### N-grams
 - **N-grams** are combinations of words in order. 
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/160330628-6983051b-8d91-4115-87c6-fd9bf72b51ca.png" width="400" />
+  <br>1-gram & 2-grams representation of the sentence “The movie is amazing”
+</p>
+
+- Both `CountVectorizer` and `TfidfVectorizer` implementations of *scikit-learn* offers ngrams by 
+  - `ngram_range` parameter:  which has a minimum and maximum limit. 
+    - By default, this is (1, 1). When change it to (1, 3), we are looking at unigrams, bigrams  and trigrams. 
+```Python
+tfidf_vec = TfidfVectorizer(
+      tokenizer=word_tokenize,
+      token_pattern=None,
+      ngram_range=(1, 3)
+)
+```
+
+### 1.1.2. Latent Dirichlet allocation
 
 [(Back to top)](#table-of-contents)
 
