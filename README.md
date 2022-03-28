@@ -50,7 +50,7 @@ There are 2 established techniques for document embedding: bag-of-words and late
 
 #### N-grams
 - **N-grams** are combinations of words in order. 
-
+- Downside of this approach is the non-linear dependency of the vocabulary size on the number of unique words, which can be very large for large corpora. Filtering techniques are commonly used to reduce the vocabulary size.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/160330628-6983051b-8d91-4115-87c6-fd9bf72b51ca.png" width="400" />
   <br>1-gram & 2-grams representation of the sentence “The movie is amazing”
