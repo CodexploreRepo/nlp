@@ -3,7 +3,6 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
 - [1. Word-Embedding](#1-word-embedding)
-
 - [2. BERT](#2-bert)
   - [2.1. BERT Introduction](#21-bert-introduction)
     - [2.1.1. What is BERT ?](#211-what-is-bert)
