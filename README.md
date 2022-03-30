@@ -240,7 +240,7 @@ sg = 1              # The training algorithm, either CBOW(0) or skip gram(1). Th
 print("Training model....")
 model = word2vec.Word2Vec(sentences,\
                           workers=num_workers,\
-                          size=num_features,\
+                          vector_size=num_features,\
                           min_count=min_word_count,\
                           window=context,
                           sample=downsampling,
