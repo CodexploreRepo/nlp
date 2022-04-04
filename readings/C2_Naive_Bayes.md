@@ -1,4 +1,4 @@
-# Natural Language Processing
+# Naive Bayes
 
 # Table of contents
 - [Table of contents](#table-of-contents)
@@ -6,7 +6,7 @@
   - [1.1. Introduction to Prob](#11-introduction-to-prob)
   - [1.2. Conditional Prob](#12-conditional-prob)
   - [1.3. Bayes' Rule](#13-bayes-rule)
-
+- [2. Naïve Bayes](#2-naive-bayes)
 # 1. Probability
 ## 1.1. Introduction to Prob
 - `N`: Total number of tweet (In this example is 20)
@@ -35,6 +35,13 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/161576372-a65836e2-585e-40ef-b9e9-3be721cd322f.png" width="500" />
 </p>
+
+# 2. Naive Bayes
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/161576834-73010d15-089c-432c-b40a-7f82f336458e.png" width="500" />
+</p>
+
+
 
 # Resources
 ## Reading List
