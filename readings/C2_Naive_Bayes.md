@@ -66,10 +66,11 @@
 <img src="https://user-images.githubusercontent.com/64508435/161584073-e481a14e-629d-4b99-a488-f69eb8d818cf.png" width="400" />
 </p>
 
-- Note: Added a `1` in the numerator, and since there are `V` words to normalize, we add `V`in the denominator, so that the total prob = 1.
+
 - Where: 
   - `N_class`: frequency of all words in class
   - `V`: number of unique words in vocabulary
+- **Note**: Added a `1` in the numerator, and since there are `V` words to normalize, we add `V`in the denominator, so that the total prob = 1.
 - Example: `P(w_i|class)` with smoothing
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/161582597-9c622eab-db12-45d5-85ef-d9cbc6cfa93f.png" width="500" />
