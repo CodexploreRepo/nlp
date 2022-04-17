@@ -2,7 +2,7 @@
 
 # Table of contents
 - [Table of contents](#table-of-contents)
-- [1. NLP Introduction](#./readings/c1_nlp_introduction.md)
+- [1. NLP Introduction](./readings/c1_nlp_introduction.md)
 
 
 
