@@ -9,6 +9,7 @@
   - [2.2. Syntactic Analysis: organize words into sentences](#22-syntactic-analysis)
   - [2.3. Semantic Analysis: meaning of words and sentences](#23-semantic-analysis)
   - [2.4. Discourse Analysis: meaning of sentences in documents](#24-discourse-analysis)
+  - [2.5. Pragmatic Analysis: intepret language in context](#25-pragmatic-analysis)
 - [Resources](#resources)
 
 # 1. What is NLP 
@@ -58,8 +59,19 @@
 </p>
 
 ## 2.4. Discourse Analysis
+- **Coreference Resolution**: identify the same entity in texts
+<p align="center">
+<img width="400" alt="Screenshot 2022-04-17 at 11 46 01" src="https://user-images.githubusercontent.com/64508435/163699455-249c7577-cd4b-4615-8d4b-c290392eb052.png">
+</p>
+
+## 2.5. Pragmatic Analysis
+- **Textual Entailment**: determine the inference relation between two pieces of texts
+<p align="center">
+<img width="400" alt="Screenshot 2022-04-17 at 11 46 01" src="https://user-images.githubusercontent.com/64508435/163699524-c0ff6503-b4fa-4be9-951a-6b7b33af237f.png">
+</p>
 
 # Resources
+
 
 
 
