@@ -187,3 +187,49 @@
 Solution: from raw count to **Pointwise Mutual Information** (PMI)
 
 #### Pointwise Mutual Information (PMI)
+- `p(w1)`, `p(w2)`: probability of unigram, or probability of the word w1 appears in the corpus.
+- `pmi(w1, w2)`: whether two words w1, and w2 appear together more freq than if they appear alone. 
+- <img width="428" alt="Screenshot 2022-04-20 at 20 50 32" src="https://user-images.githubusercontent.com/64508435/164234315-27c8bfee-09a7-4371-b606-2563e4b0b904.png">
+
+##### Information Theory
+- When x occurs, how much information it brings, aka, surprisal of x.
+- Inversely proportional to probability
+<img width="405" alt="Screenshot 2022-04-20 at 20 55 51" src="https://user-images.githubusercontent.com/64508435/164235290-23079be5-4277-4634-8631-05104cda4315.png">
+- Example 1:
+<img width="640" alt="Screenshot 2022-04-20 at 20 56 32" src="https://user-images.githubusercontent.com/64508435/164235424-48bc4bfb-f27c-494e-a8df-389afcd737a1.png">
+- Example 2: danger brings more information than "the", "an", "and"
+
+<img width="640" alt="Screenshot 2022-04-20 at 20 57 36" src="https://user-images.githubusercontent.com/64508435/164235611-329fde8d-8730-43bd-9838-c05d6eed48b5.png">
+
+##### Entropy
+- Expectation of information contents
+- More uncertainty, higher entropy
+- High Entropy, the system will be un-stable as there is a lot of uncertainty.
+
+<img width="395" alt="Screenshot 2022-04-20 at 20 59 29" src="https://user-images.githubusercontent.com/64508435/164235916-7961bbfa-1059-4581-897e-0634554ab676.png">
+
+
+##### Mutual Information
+- Mutual Information: Entropy betweeen two systems
+- If X & Y independent, then I(X,Y) = 0
+- I see the word "movie", it will have me to guess the next words, for example "star", "actor"
+- Mutual information is the average level of PMI.
+<img width="678" alt="Screenshot 2022-04-20 at 21 01 36" src="https://user-images.githubusercontent.com/64508435/164236277-36f5e654-dc74-45cd-a4bd-b5f085d23984.png">
+
+### Converting Count-based Matrix to PMI Matrix
+
+![IMG_AC5E0FDC50AE-1](https://user-images.githubusercontent.com/64508435/164237310-850046c4-6988-4960-b67d-9377b9a9ab48.jpeg)
+
+#### Limitation of 
+– Vector size is too large 1 x |𝑉| , (|𝑉| is typically 20k~200k)
+– Vector is too sparse (most dimensions are zero value) 
+  - Various improvements, e.g., Add-1 smoothing
+
+
+## 2.2. Dense Word Embeddings
+- A dense vector (a.k.a.  word embeddings) that maps the similarity between words to the distance in vector space.
+
+<img width="695" alt="Screenshot 2022-04-20 at 21 10 18" src="https://user-images.githubusercontent.com/64508435/164237724-78f880de-c540-42be-8ec6-b4b52ea6cd19.png">
+
+### 2.2.1. Why Dense Word Vectors
+
