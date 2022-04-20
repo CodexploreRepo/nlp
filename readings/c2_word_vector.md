@@ -141,3 +141,49 @@
 - Other common normalization steps
   - Removal of stop words (e.g, a, an, the)
   - Removal of non-standard tokens (e.g., url, emojis)
+
+
+# 2. Word Vector
+- Motivation: Find the similar words
+## 2.1. Sparse Word Embeddings
+### 2.1.1. One-hot Encoding 
+<img width="677" alt="Screenshot 2022-04-20 at 20 11 07" src="https://user-images.githubusercontent.com/64508435/164227554-089f9e07-52d5-46dd-a2e9-081e93b976db.png">
+
+### 2.1.2. Word Net
+- WordNet is a lexical knowledge base 
+  - mostly **manually** curated;
+  – gather similar words into synsets
+  - `synsets` are connected via various relations
+
+<img width="689" alt="Screenshot 2022-04-20 at 20 14 44" src="https://user-images.githubusercontent.com/64508435/164228136-0ee7934c-5874-4c64-bc9b-cd023d294308.png">
+
+- WordNet based Word similarity (e.g., Wu & Palmer Similarity) 
+  - Topological similarity between synsets
+  - Consider the depth of Least Common Subsumer (LCS)
+![IMG_AE8EC93AAAA2-1](https://user-images.githubusercontent.com/64508435/164228835-8c53aa27-1f27-466c-a73a-547d66f55dd5.jpeg)
+![IMG_22263D3C34B7-1](https://user-images.githubusercontent.com/64508435/164228928-35e73c1b-ca33-46b5-a9fe-56a8bea99b76.jpeg)
+<img width="700" alt="Screenshot 2022-04-20 at 20 20 58" src="https://user-images.githubusercontent.com/64508435/164229159-210c2aee-b016-4fff-bbcc-d5efc607cb74.png">
+
+- Limitation of WordNet similarity
+  - Granularity was not fine enough
+    - e.g. good vs. effective, charter vs. lease
+  - Difficult to keep up-to-date
+    - e.g. cloud computing, badass, COVID
+  - Human labor intensive
+
+### 2.1.3. Co-Occurrence Vectors
+– A vector has a length of vocabulary size (number of unique words)
+– Each element denotes how often two words occurs with each other (within a predefined window).
+
+<img width="716" alt="Screenshot 2022-04-20 at 20 23 50" src="https://user-images.githubusercontent.com/64508435/164229612-2cdddbd8-0d1f-4ffe-bd71-955205abe4e3.png">
+- In this example: we count the occurence in the entire sentence.
+<img width="716" alt="Screenshot 2022-04-20 at 20 25 58" src="https://user-images.githubusercontent.com/64508435/164229926-21c88344-35af-4796-b2da-9b252f49ecf2.png">
+
+- Consideration #1: Relative importance 
+  - e.g., is “crowd” twice important than “work”?
+- Consideration #2: Discriminative
+  - e.g., some words are just very frequent
+
+Solution: from raw count to **Pointwise Mutual Information** (PMI)
+
+#### Pointwise Mutual Information (PMI)
