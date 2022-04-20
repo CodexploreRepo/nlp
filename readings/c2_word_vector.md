@@ -232,4 +232,38 @@ Solution: from raw count to **Pointwise Mutual Information** (PMI)
 <img width="695" alt="Screenshot 2022-04-20 at 21 10 18" src="https://user-images.githubusercontent.com/64508435/164237724-78f880de-c540-42be-8ec6-b4b52ea6cd19.png">
 
 ### 2.2.1. Why Dense Word Vectors
+- Advantage
+  - Efficient Computation
+  - Less parameters
+- In practice
+  - 100-1000 dimensions (vs 20k-200k in sparse vectors)
+  - almost no dimension is zero-value
+
+<img width="695" alt="Screenshot 2022-04-20 at 21 11 51" src="https://user-images.githubusercontent.com/64508435/164238024-a16ee46d-6016-4db1-8096-8dac0a81a137.png">
+
+# 3. Dense Word Embedding Method
+## 3.1. PMI Matrix Factorization
+- use Singular Value Decomposition (SVD) to decompose the PMI Matrix into U, S, V
+
+<img width="695" alt="Screenshot 2022-04-20 at 21 14 41" src="https://user-images.githubusercontent.com/64508435/164238566-25d1e64b-cd7c-4d59-8ce6-56a458313932.png">
+
+![IMG_F5D77784CB01-1](https://user-images.githubusercontent.com/64508435/164239820-0cd4cd98-1e87-4abb-a388-527e643c93bf.jpeg)
+
+## 3.2. Word2Vec
+- Basic idea:
+  - given a corpus, we slide a window to obtain many spans of words to capture the context
+  - predict if two words co-occur in the same window (Binary classification)
+![IMG_C716C034C721-1](https://user-images.githubusercontent.com/64508435/164240768-45e41469-f8e8-48d3-8080-8bf50a1a0699.jpeg)
+- Two variants
+  - CBOW: Continuous Bag of Words 
+  - Skip-gram
+### 3.2.1. CBOW 
+- Continuous Bag-of-Words (CBOW): predict a word from the context
+-
+<img width="695" alt="Screenshot 2022-04-20 at 21 28 15" src="https://user-images.githubusercontent.com/64508435/164241123-ee763f20-ee3c-4f3a-9ae3-d8596851e462.png">
+
+### 3.2.2. Skip-gram
+- Skip-gram: Predict context from a word
+<img width="695" alt="Screenshot 2022-04-20 at 21 29 00" src="https://user-images.githubusercontent.com/64508435/164241276-a84d6a6f-5a5d-4998-bb0d-8ddb2a368b68.png">
+
 
