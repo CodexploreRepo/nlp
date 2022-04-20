@@ -87,4 +87,57 @@
   - Base on the **merge rules**, we will build the tokenizer. 
 <img width="594" alt="Screenshot 2022-04-20 at 19 45 38" src="https://user-images.githubusercontent.com/64508435/164223468-7d45b76e-21a1-4cf9-a9ec-92ff2b665d6c.png">
 
+#### 1.2.3.2. Tokenization: WordPiece
+- Mostly, similar to BPE
+- WordPiece does not choose the most frequent pair, but the one that **maximizes the likelihood of the training data once added to the vocabulary**.
+  - evaluates what it loses by merging two symbols to ensure it’s worth it.
+  
+<img width="685" alt="Screenshot 2022-04-20 at 19 54 55" src="https://user-images.githubusercontent.com/64508435/164224944-35b95677-0c21-446b-977b-49c296ab1d8f.png">
 
+## 1.3. Normalization
+- Convert the meaningful unit into a canonical (one) form
+  - Lemma, Stem
+<img width="664" alt="Screenshot 2022-04-20 at 19 57 18" src="https://user-images.githubusercontent.com/64508435/164225282-1f9ca9c6-3a4a-4eba-87a6-01f7fe399187.png">
+
+- Not always necessary 
+  - helpful in Information Retrieval
+  - may bring noise in Named Entity Recognition
+
+<img width="664" alt="Screenshot 2022-04-20 at 19 58 14" src="https://user-images.githubusercontent.com/64508435/164225460-6ed72aff-603a-4846-8251-1f4e0bcfba09.png">
+
+### 1.3.1. Normalization - Stemming
+- Idea: Reduce words to their stem (stem: meaningful unit in a word)
+• Method: removing affixes based on rules – Singular vs plural
+– verb tenses
+– comparative/superlative adjective
+• Pro: fast
+• Con: Stem word may not be a word
+
+<img width="312" alt="Screenshot 2022-04-20 at 19 59 37" src="https://user-images.githubusercontent.com/64508435/164225691-e96bd3a1-453f-48ef-a19a-bd29af6de2ca.png">
+
+- Porter Stemmer:  most common stemmer for English
+  - Series of rules that run in a cascade:
+    - output of each pass is fed into the next pass 
+    - stemming stops if a pass makes no changes
+
+<img width="487" alt="Screenshot 2022-04-20 at 20 01 22" src="https://user-images.githubusercontent.com/64508435/164226008-379102b3-29ab-40cf-87a5-5acbe809fef6.png">
+
+### 1.3.2. Normalization - Lemmatization
+- Idea: convert words to the base form
+- Lemma (Base form) will depend on the POS (Part of Speed) tage of a word like Lemma (n), Lemma (v)
+
+- Pro:
+  – Lemma words are proper words
+  - Can normalize irregular forms
+- Con:
+  – require lexicon + rules – require POS tags
+  - slower than stemming as need to identify POS tags
+<img width="542" alt="Screenshot 2022-04-20 at 20 02 46" src="https://user-images.githubusercontent.com/64508435/164226217-682e3a2f-43ab-40c3-a1fd-d03b00c6eda3.png">
+
+#### Final words for Normalization:
+- Canonical form also effects tokenization
+  - Separate out clitics (e.g., doesn’t -> does n’t, John’s -> John ‘s) – Keep hyphenated words together
+  - Separate out all punctuation symbols
+- Other common normalization steps
+  - Removal of stop words (e.g, a, an, the)
+  - Removal of non-standard tokens (e.g., url, emojis)
