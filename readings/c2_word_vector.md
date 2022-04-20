@@ -6,6 +6,11 @@
 
 
 # 1. Corpus Pre-processing
+Data preprocessing steps 
+- tokenization
+– case-folding (lower-case
+– Normalization
+– Stopwords removal
 ## 1.1. Regular Expression
 - Definition:
   - Search *pattern* used to match character combinations in a string
@@ -255,8 +260,9 @@ Solution: from raw count to **Pointwise Mutual Information** (PMI)
   - predict if two words co-occur in the same window (Binary classification)
 ![IMG_C716C034C721-1](https://user-images.githubusercontent.com/64508435/164240768-45e41469-f8e8-48d3-8080-8bf50a1a0699.jpeg)
 - Two variants
-  - CBOW: Continuous Bag of Words 
-  - Skip-gram
+  - CBOW: Continuous Bag of Words (for Large Corpus)
+  - Skip-gram (For Small Corpus)
+
 ### 3.2.1. CBOW 
 - Continuous Bag-of-Words (CBOW): predict a word from the context
 -
@@ -266,4 +272,57 @@ Solution: from raw count to **Pointwise Mutual Information** (PMI)
 - Skip-gram: Predict context from a word
 <img width="695" alt="Screenshot 2022-04-20 at 21 29 00" src="https://user-images.githubusercontent.com/64508435/164241276-a84d6a6f-5a5d-4998-bb0d-8ddb2a368b68.png">
 
+<img width="703" alt="Screenshot 2022-04-20 at 21 55 44" src="https://user-images.githubusercontent.com/64508435/164246721-c2bc0ad9-9fad-4106-9d2f-f386ff10695e.png">
 
+### 3.2.3. Learning Objective
+- Two-level goals
+  - Optimize current word vector close to its context words
+  - words with similar contexts will be close (or similar embedding)
+<img width="703" alt="Screenshot 2022-04-20 at 21 57 45" src="https://user-images.githubusercontent.com/64508435/164247178-94167267-dd32-4d9b-94b2-69abce40bce4.png">
+
+### 3.2.4. Negative Sampling
+- To avoid the calculation over the entire vocabulary
+
+
+## 3.3. Glove
+- Combine both *local* and *global* features
+  – **Local features**, e.g., context span in a window of Word2Vec
+  – **Global features**, e.g., PMI matrix over the entire corpus of SVD
+
+<img width="703" alt="Screenshot 2022-04-20 at 22 09 26" src="https://user-images.githubusercontent.com/64508435/164249566-0e76a0c3-5f4d-4b09-a406-798cb607c38a.png">
+
+- Step1: Build Co-occurrence Probabilities Matrix to capture word similarity
+<img width="703" alt="Screenshot 2022-04-20 at 22 10 48" src="https://user-images.githubusercontent.com/64508435/164249854-6fe5356b-7254-4238-acab-cb3c5e95bebb.png">
+- Bayes Theorem: to compute P(X|Y)
+
+<img width="716" alt="Screenshot 2022-04-20 at 22 11 21" src="https://user-images.githubusercontent.com/64508435/164249960-32ab0e21-23fb-443c-9a18-9380f9903fdd.png">
+- Wi = ice, Wj=Steam, Wk = x (random)
+- There are 4 cases for the ratio to capture the global feature
+  - Large
+  - Small
+  - ~1 
+  - ~1
+
+- Step2:
+  - Learn word vectors to fit the ratios
+  - suppose we have word vectors that meet:
+  <img width="716" alt="Screenshot 2022-04-20 at 22 14 50" src="https://user-images.githubusercontent.com/64508435/164250733-aa5622e9-02b7-4456-b168-6d6903214bf1.png">
+
+![IMG_75107973B630-1](https://user-images.githubusercontent.com/64508435/164251341-4b2856c2-e2ce-48be-a125-ec680b2999ff.jpeg)
+![IMG_152D989247B3-1](https://user-images.githubusercontent.com/64508435/164251993-a8f0af96-ec16-45b4-bef1-627392bb099d.jpeg)
+![IMG_2630FEF38F14-1](https://user-images.githubusercontent.com/64508435/164252159-039ae382-6cca-42b3-8dfd-fef004019cf4.jpeg)
+
+# 4. Evaluation of Word Embedding
+- Word similarity: check if two words are similar with each other using Cosine Similarity
+- Word Analogy: Vector differences reflect semantic relationship
+
+<img width="716" alt="Screenshot 2022-04-20 at 22 22 58" src="https://user-images.githubusercontent.com/64508435/164252525-d7759aab-2df9-47a6-9178-bc0c51f24b3d.png">
+
+# 5. Limitation of Word Embedding
+- How to represent rare or unseen words? 
+  - e.g., words not included in the corpus
+- How to represent cross-language, sentiment, negation, or other semantics?
+  - e.g., “scary” is similar with “funny”, is this right? – e.g., “not good” vs “good” vs “bad”
+- How to represent different senses of the same word? – e.g., “bass”, “bank”, “apple”
+- How to represent phrases?
+  - e.g., “New York” not new and york, “ice cream”, “hot dog”.
