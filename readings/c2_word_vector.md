@@ -6,9 +6,12 @@
 - [2. Corpus Pre-processing](#2-corpus-pre-processing)
   - [2.1. Regular Expression](#21-regular-expression)
   - [2.2. Tokenization](#22-tokenization)
-
-
-
+    - [2.2.1. Tokenization for languages without separate whitespaces](#221-tokenization-for-languages-without-separate-whitespaces)
+    - [2.2.2. Tokenization using Sub-word :star:](#222-tokenization-using-sub-word)
+  - [2.3. Normalization](#23-normalization)
+    - [2.3.1. Stemming](#231-stemming) 
+    - [2.3.2. Lemmatization](#232-lemmatization)
+    - [2.3.3. Summary for Normalization](#233-summary-for-normalization)
 
 # 1. Motivation for Word Vectors
 - Example: Textual Similarity
@@ -74,12 +77,12 @@
 - Method 1: Regular Expression
   - Lightweight, efficient in practice
 - Method 2: Using packages, e.g., spaCy
-  - Limitation: languages with whitespaces separating words   
+  - Limitation: only languages with whitespaces separating words   
 <p align="center"><img width="699" alt="Screenshot 2022-04-20 at 19 32 54" src="https://user-images.githubusercontent.com/64508435/164221552-efeb7322-e867-405a-b2f3-ee22d3da23ef.png"></p>
 
 [(Back to top)](#table-of-contents)
 
-### 2.2.2. Tokenization for languages without separate whitespaces
+### 2.2.1. Tokenization for languages without separate whitespaces
 - Tokenization for languages without separate whitespaces ?
 - Intuitive solution
   – First collect a dictionary of words 
@@ -89,79 +92,86 @@
 <img width="713" alt="Screenshot 2022-04-20 at 19 34 30" src="https://user-images.githubusercontent.com/64508435/164221795-ee4ce6ba-6ab1-4e2f-a56a-eb07be464408.png"><br>
 <img width="480" alt="Screenshot 2022-04-20 at 19 35 00" src="https://user-images.githubusercontent.com/64508435/164221871-4d015b5f-6d13-4bc7-8bd0-8da08e1a445f.png"><br>On the English with whitespaces, it performs worst</p>
 
-### 1.2.3. Tokenization using Sub-word
+### 2.2.2. Tokenization using Sub-word
 - Tokenization Sub-word: Split texts into frequent subwords
-- Current state-of-the-art:
+- Current state-of-the-art method:
   - **Byte-Pair Encoding (BPE)**: GPT, Roberta, XLM 
   - **WordPiece**: BERT, DistilBERT, Electra
-#### 1.2.3.1. Tokenization: BPE
+
+#### 2.2.2.1. Tokenization: BPE
 - Two steps:
   - Token learning: learn a vocabulary from corpus 
   - Tokenizer: split text according to the vocabulary
+<p align="center">
+<img width="625" alt="Screenshot 2022-04-20 at 19 40 29" src="https://user-images.githubusercontent.com/64508435/164222677-05cbda66-0921-407e-8c25-b9949359abd1.png"></p>
 
-<img width="625" alt="Screenshot 2022-04-20 at 19 40 29" src="https://user-images.githubusercontent.com/64508435/164222677-05cbda66-0921-407e-8c25-b9949359abd1.png">
- - Step 1: Token Learning
-  - `k`: how many sub-words that we want 
-  - Initialize the vocab with single character
-  - Find most frequent two consecutive.
-  - By Product: Merge Rules
-<img width="643" alt="Screenshot 2022-04-20 at 19 41 52" src="https://user-images.githubusercontent.com/64508435/164222889-04c3a6ad-6beb-4d0c-a9b6-bb652de93e7f.png">
-    - Find most frequent two consecutive. In this example is `es`
-    <img width="681" alt="Screenshot 2022-04-20 at 19 43 48" src="https://user-images.githubusercontent.com/64508435/164223175-f0d5e6cc-2cb5-4c83-a88e-c032788b400f.png">
-<img width="681" alt="Screenshot 2022-04-20 at 19 44 06" src="https://user-images.githubusercontent.com/64508435/164223217-521eac6d-0397-4dc6-8868-350aeca3cdb8.png">
+ - **Step 1**: Token Learning
+   - `k` how many sub-words that we want 
+   - Initialize the vocab with single character
+   - Find most frequent two consecutive.
+   - By Product: **Merge Rules**
+<p align="center">
+<img width="643" alt="Screenshot 2022-04-20 at 19 41 52" src="https://user-images.githubusercontent.com/64508435/164222889-04c3a6ad-6beb-4d0c-a9b6-bb652de93e7f.png"></p>
 
-- Step 2: Tokenier
+- Find most frequent two consecutive. In this example is `es`
+<p align="center"><img width="681" alt="Screenshot 2022-04-20 at 19 43 48" src="https://user-images.githubusercontent.com/64508435/164223175-f0d5e6cc-2cb5-4c83-a88e-c032788b400f.png">
+<img width="681" alt="Screenshot 2022-04-20 at 19 44 06" src="https://user-images.githubusercontent.com/64508435/164223217-521eac6d-0397-4dc6-8868-350aeca3cdb8.png"></p>
+
+- **Step 2**: Tokenier
   - Base on the **merge rules**, we will build the tokenizer. 
-<img width="594" alt="Screenshot 2022-04-20 at 19 45 38" src="https://user-images.githubusercontent.com/64508435/164223468-7d45b76e-21a1-4cf9-a9ec-92ff2b665d6c.png">
+<p align="center"><img width="594" alt="Screenshot 2022-04-20 at 19 45 38" src="https://user-images.githubusercontent.com/64508435/164223468-7d45b76e-21a1-4cf9-a9ec-92ff2b665d6c.png"></p>
 
-#### 1.2.3.2. Tokenization: WordPiece
+[(Back to top)](#table-of-contents)
+
+#### 2.2.2.2. Tokenization: WordPiece
 - Mostly, similar to BPE
 - WordPiece does not choose the most frequent pair, but the one that **maximizes the likelihood of the training data once added to the vocabulary**.
   - evaluates what it loses by merging two symbols to ensure it’s worth it.
-  
-<img width="685" alt="Screenshot 2022-04-20 at 19 54 55" src="https://user-images.githubusercontent.com/64508435/164224944-35b95677-0c21-446b-977b-49c296ab1d8f.png">
+<p align="center">
+<img width="500" alt="Screenshot 2022-04-20 at 19 54 55" src="https://user-images.githubusercontent.com/64508435/164224944-35b95677-0c21-446b-977b-49c296ab1d8f.png"></p>
 
-## 1.3. Normalization
+## 2.3. Normalization
 - Convert the meaningful unit into a canonical (one) form
   - Lemma, Stem
-<img width="664" alt="Screenshot 2022-04-20 at 19 57 18" src="https://user-images.githubusercontent.com/64508435/164225282-1f9ca9c6-3a4a-4eba-87a6-01f7fe399187.png">
+<p align="center">
+<img width="500" alt="Screenshot 2022-04-20 at 19 57 18" src="https://user-images.githubusercontent.com/64508435/164225282-1f9ca9c6-3a4a-4eba-87a6-01f7fe399187.png"></p>
 
 - Not always necessary 
   - helpful in Information Retrieval
   - may bring noise in Named Entity Recognition
+<p align="center"><img width="400" alt="Screenshot 2022-04-20 at 19 58 14" src="https://user-images.githubusercontent.com/64508435/164225460-6ed72aff-603a-4846-8251-1f4e0bcfba09.png"></p>
 
-<img width="664" alt="Screenshot 2022-04-20 at 19 58 14" src="https://user-images.githubusercontent.com/64508435/164225460-6ed72aff-603a-4846-8251-1f4e0bcfba09.png">
+### 2.3.1. Stemming
+- **Idea**: Reduce words to their stem (stem: meaningful unit in a word)
+- **Method**: removing affixes based on rules
+  - Singular vs plural
+  – verb tenses
+  - comparative/superlative adjective
+- **Pro**: fast
+- **Con**: Stem word may not be a word
+<p align="center">
+<img width="312" alt="Screenshot 2022-04-20 at 19 59 37" src="https://user-images.githubusercontent.com/64508435/164225691-e96bd3a1-453f-48ef-a19a-bd29af6de2ca.png"></p>
 
-### 1.3.1. Normalization - Stemming
-- Idea: Reduce words to their stem (stem: meaningful unit in a word)
-• Method: removing affixes based on rules – Singular vs plural
-– verb tenses
-– comparative/superlative adjective
-• Pro: fast
-• Con: Stem word may not be a word
-
-<img width="312" alt="Screenshot 2022-04-20 at 19 59 37" src="https://user-images.githubusercontent.com/64508435/164225691-e96bd3a1-453f-48ef-a19a-bd29af6de2ca.png">
-
-- Porter Stemmer:  most common stemmer for English
+- `Porter Stemmer`:  most common stemmer for English
   - Series of rules that run in a cascade:
-    - output of each pass is fed into the next pass 
-    - stemming stops if a pass makes no changes
+    - Output of each pass is fed into the next pass 
+    - Stemming stops if a pass makes no changes
+<p align="center">
+<img width="487" alt="Screenshot 2022-04-20 at 20 01 22" src="https://user-images.githubusercontent.com/64508435/164226008-379102b3-29ab-40cf-87a5-5acbe809fef6.png"></p>
 
-<img width="487" alt="Screenshot 2022-04-20 at 20 01 22" src="https://user-images.githubusercontent.com/64508435/164226008-379102b3-29ab-40cf-87a5-5acbe809fef6.png">
-
-### 1.3.2. Normalization - Lemmatization
-- Idea: convert words to the base form
-- Lemma (Base form) will depend on the POS (Part of Speed) tage of a word like Lemma (n), Lemma (v)
-
-- Pro:
-  – Lemma words are proper words
+### 2.3.2. Lemmatization
+- **Idea**: convert words to the base form
+- **Lemma (Base form)**: will depend on the POS (Part of Speed) tag of a word like Lemma (n), Lemma (v)
+- **Pro**:
+  - Lemma words are proper words
   - Can normalize irregular forms
-- Con:
-  – require lexicon + rules – require POS tags
+- **Con**:
+  - require lexicon + rules 
+  - require POS tags
   - slower than stemming as need to identify POS tags
-<img width="542" alt="Screenshot 2022-04-20 at 20 02 46" src="https://user-images.githubusercontent.com/64508435/164226217-682e3a2f-43ab-40c3-a1fd-d03b00c6eda3.png">
+<p align="center"><img width="542" alt="Screenshot 2022-04-20 at 20 02 46" src="https://user-images.githubusercontent.com/64508435/164226217-682e3a2f-43ab-40c3-a1fd-d03b00c6eda3.png"></p>
 
-#### Final words for Normalization:
+### 2.3.3. Summary for Normalization:
 - Canonical form also effects tokenization
   - Separate out clitics (e.g., doesn’t -> does n’t, John’s -> John ‘s) – Keep hyphenated words together
   - Separate out all punctuation symbols
