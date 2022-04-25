@@ -1,71 +1,93 @@
+# Word Vectors
+
+# Table of contents
+- [Table of contents](#table-of-contents)
+- [1. Motivation for Word Vectors](#1-motivation-for-word-vectors)
+- [2. Corpus Pre-processing](#2-corpus-pre-processing)
+  - [2.1. Regular Expression](#21-regular-expression)
+  - [2.2. Tokenization](#22-tokenization)
+
+
+
+
+# 1. Motivation for Word Vectors
 - Example: Textual Similarity
   - Given 2 sentences, we want to determine 2 sentences are similar or not 
-  <img width="1065" alt="Screenshot 2022-04-20 at 19 11 13" src="https://user-images.githubusercontent.com/64508435/164218294-72d8da77-2d9e-4bd3-81c9-571a2838b19c.png">
-  - Problem: Similar meanings but different words
-- [1. Corpus Pre-processing](#1-corpus-pre-processing)
+<p align="center">
+<img width="600" alt="Screenshot 2022-04-20 at 19 11 13" src="https://user-images.githubusercontent.com/64508435/164218294-72d8da77-2d9e-4bd3-81c9-571a2838b19c.png">
+</p>
 
+- **Problem**: Similar meanings but different words (Dogs, Dog, Friends, Friend) &#8594; Word Vectors
 
-# 1. Corpus Pre-processing
-Data preprocessing steps 
-- tokenization
-– case-folding (lower-case
-– Normalization
-– Stopwords removal
-## 1.1. Regular Expression
-- Definition:
+[(Back to top)](#table-of-contents)
+
+# 2. Corpus Pre-processing
+- Data pre-processing steps:
+  - Tokenization
+  - Case-folding (lower-case)
+  - Normalization
+  - Stopwords removal
+
+## 2.1. Regular Expression
+- Regex Definition:
   - Search *pattern* used to match character combinations in a string
   - Pattern: a sequence of characters
 - Application:
   - Search and replace
   - Validate texts to ensure given patterns (for example: password validation)
-  - <img width="607" alt="Screenshot 2022-04-20 at 19 16 34" src="https://user-images.githubusercontent.com/64508435/164219135-c46cd292-0357-43fa-b905-18573e7e2863.png">
+<p align="center">
+<img width="607" alt="Screenshot 2022-04-20 at 19 16 34" src="https://user-images.githubusercontent.com/64508435/164219135-c46cd292-0357-43fa-b905-18573e7e2863.png"></p>
 
 - Fixed pattern: **Exact** match
 - Meta characters: **Relaxed** match a type of characters
-<img width="405" alt="Screenshot 2022-04-20 at 19 16 18" src="https://user-images.githubusercontent.com/64508435/164219098-30b155b6-7cb5-4c81-b40b-527571855b43.png">
+<p align="center"><img width="405" alt="Screenshot 2022-04-20 at 19 16 18" src="https://user-images.githubusercontent.com/64508435/164219098-30b155b6-7cb5-4c81-b40b-527571855b43.png"></p>
 
-- Character class:<img width="675" alt="Screenshot 2022-04-20 at 19 20 44" src="https://user-images.githubusercontent.com/64508435/164219763-c610452a-937b-4213-9879-a1079485f99a.png">
+- Character class:
+<p align="center"><img width="675" alt="Screenshot 2022-04-20 at 19 20 44" src="https://user-images.githubusercontent.com/64508435/164219763-c610452a-937b-4213-9879-a1079485f99a.png"></p>
 
-- Repetition: repeated match<img width="514" alt="Screenshot 2022-04-20 at 19 18 14" src="https://user-images.githubusercontent.com/64508435/164219352-9a354e34-c9a0-4563-8878-cd453f4c7f63.png">
+- Repetition: repeated match
+<p align="center"><img width="514" alt="Screenshot 2022-04-20 at 19 18 14" src="https://user-images.githubusercontent.com/64508435/164219352-9a354e34-c9a0-4563-8878-cd453f4c7f63.png"></p>
 
 - Example: Regular Expression
-- <img width="607" alt="Screenshot 2022-04-20 at 19 19 55" src="https://user-images.githubusercontent.com/64508435/164219626-897d01b9-fd96-4544-ac78-071a4df8ebbf.png">
-- Group: 
-- Enclosing with “( ... )”
-- Match the whole pattern, while capture each group individually 
-- Groups can be nested “( ... (... (...))...)”
+<p align="center"><img width="507" alt="Screenshot 2022-04-20 at 19 19 55" src="https://user-images.githubusercontent.com/64508435/164219626-897d01b9-fd96-4544-ac78-071a4df8ebbf.png"></p>
 
-<img width="545" alt="Screenshot 2022-04-20 at 19 22 05" src="https://user-images.githubusercontent.com/64508435/164219973-e1c41737-0121-41d8-98ae-3b1f5776a708.png">
+- Group: 
+  - Enclosing with “( ... )”
+  - Match the whole pattern, while capture each group individually 
+  - Groups can be nested “( ... (... (...))...)”
+<p align="center">
+<img width="545" alt="Screenshot 2022-04-20 at 19 22 05" src="https://user-images.githubusercontent.com/64508435/164219973-e1c41737-0121-41d8-98ae-3b1f5776a708.png"></p>
 
 - Backreference: Find repeated group
-<img width="601" alt="Screenshot 2022-04-20 at 19 22 36" src="https://user-images.githubusercontent.com/64508435/164220044-16e3df75-411a-4367-af5a-d27542c6f41b.png">
   - `\2`: back-reference the second group
   - Matched words: `m-o-m`, `t-e-s-t`
-
+<p align="center"><img width="601" alt="Screenshot 2022-04-20 at 19 22 36" src="https://user-images.githubusercontent.com/64508435/164220044-16e3df75-411a-4367-af5a-d27542c6f41b.png"></p>
+  
 - Group assertions: Capture ahead or behind the match
-<img width="601" alt="Screenshot 2022-04-20 at 19 25 50" src="https://user-images.githubusercontent.com/64508435/164220488-9906e317-4425-46e6-bda2-693f6aa0eff9.png">
+<p align="center"><img width="601" alt="Screenshot 2022-04-20 at 19 25 50" src="https://user-images.githubusercontent.com/64508435/164220488-9906e317-4425-46e6-bda2-693f6aa0eff9.png"></p>
 
-## 1.2. Tokenization
+## 2.2. Tokenization
 - **Tokenization**: Split a piece of text into meaningful units (i.e., tokens)
+  - Important steps for word representation
+  - Especially for the languages without word spacing (like Chinese)
 - **Token**: word, sub-word (like morphemes), numbers, or punctuation, etc.
-
-- Important steps for word representation
-  – Especially for the languages without word spacing (like Chinese)
 - Method 1: Regular Expression
   - Lightweight, efficient in practice
 - Method 2: Using packages, e.g., spaCy
   - Limitation: languages with whitespaces separating words   
-<img width="699" alt="Screenshot 2022-04-20 at 19 32 54" src="https://user-images.githubusercontent.com/64508435/164221552-efeb7322-e867-405a-b2f3-ee22d3da23ef.png">
+<p align="center"><img width="699" alt="Screenshot 2022-04-20 at 19 32 54" src="https://user-images.githubusercontent.com/64508435/164221552-efeb7322-e867-405a-b2f3-ee22d3da23ef.png"></p>
 
-### 1.2.2. Tokenization for languages without separate whitespaces
+[(Back to top)](#table-of-contents)
+
+### 2.2.2. Tokenization for languages without separate whitespaces
 - Tokenization for languages without separate whitespaces ?
 - Intuitive solution
   – First collect a dictionary of words 
   - Then conduct Maximum Matching
 - Limitation: perform worse on languages with whitespaces
-<img width="713" alt="Screenshot 2022-04-20 at 19 34 30" src="https://user-images.githubusercontent.com/64508435/164221795-ee4ce6ba-6ab1-4e2f-a56a-eb07be464408.png">
-
-<img width="480" alt="Screenshot 2022-04-20 at 19 35 00" src="https://user-images.githubusercontent.com/64508435/164221871-4d015b5f-6d13-4bc7-8bd0-8da08e1a445f.png">
+<p align="center">
+<img width="713" alt="Screenshot 2022-04-20 at 19 34 30" src="https://user-images.githubusercontent.com/64508435/164221795-ee4ce6ba-6ab1-4e2f-a56a-eb07be464408.png"><br>
+<img width="480" alt="Screenshot 2022-04-20 at 19 35 00" src="https://user-images.githubusercontent.com/64508435/164221871-4d015b5f-6d13-4bc7-8bd0-8da08e1a445f.png"><br>On the English with whitespaces, it performs worst</p>
 
 ### 1.2.3. Tokenization using Sub-word
 - Tokenization Sub-word: Split texts into frequent subwords
