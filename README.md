@@ -4,6 +4,7 @@
 - [Table of contents](#table-of-contents)
 - [1. NLP Introduction](./readings/c1_nlp_introduction.md)
 - [2. Word Vector](./readings/c2_word_vector.md)
+- [3. Neural Networks](./readings/c3_neural_networks.md)
 
 
 
