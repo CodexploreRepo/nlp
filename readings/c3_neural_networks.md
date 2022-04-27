@@ -157,5 +157,22 @@ Only requirement: non-linear function (to avoid simply linear combination)
 
 <img width="439" alt="Screenshot 2022-04-27 at 21 51 19" src="https://user-images.githubusercontent.com/64508435/165534200-bbc6d3cd-685d-4566-a697-244aa2ebb6cd.png">
 
+### 3.2.1. Chain Rules
+- The chain rule: expresses the derivative of the composition of two differentiable functions in terms of their own derivatives
+<img width="670" alt="Screenshot 2022-04-27 at 21 54 25" src="https://user-images.githubusercontent.com/64508435/165534926-c98f09b2-04b9-421f-bb6a-3fc356865166.png">
+- Multiple-path chain rule
+
+<img width="962" alt="Screenshot 2022-04-27 at 21 54 49" src="https://user-images.githubusercontent.com/64508435/165535000-4be9dc29-145d-4d7c-a27e-4dc80fd01bb7.png">
+
+### 3.2.2. Forward pass
+<img width="1117" alt="Screenshot 2022-04-27 at 21 56 05" src="https://user-images.githubusercontent.com/64508435/165535268-0c979115-5f68-4d19-b2e1-62c682640eff.png">
+
+### 3.2.3. Backward pass
+- To compute the “contributions” of each weight to the total loss 
+  - Partial derivatives w.r.t. each weight
+<img width="977" alt="Screenshot 2022-04-27 at 21 58 32" src="https://user-images.githubusercontent.com/64508435/165535782-7be0a5fb-53d2-4bbc-b643-7636c8cdecd9.png">
+
+<img width="900" alt="Screenshot 2022-04-27 at 21 59 08" src="https://user-images.githubusercontent.com/64508435/165535882-bed5f051-6061-4e8b-bbd2-11d997e3613f.png">
 
 [(Back to top)](#table-of-contents)
+
