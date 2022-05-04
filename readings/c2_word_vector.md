@@ -171,7 +171,7 @@
   - slower than stemming as need to identify POS tags
 <p align="center"><img width="542" alt="Screenshot 2022-04-20 at 20 02 46" src="https://user-images.githubusercontent.com/64508435/164226217-682e3a2f-43ab-40c3-a1fd-d03b00c6eda3.png"></p>
 
-### 2.3.3. Summary for Normalization:
+### 2.3.3. Summary for Normalization
 - Canonical form also effects tokenization
   - Separate out clitics (e.g., doesn’t -> does n’t, John’s -> John ‘s) – Keep hyphenated words together
   - Separate out all punctuation symbols
