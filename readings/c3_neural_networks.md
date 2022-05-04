@@ -56,6 +56,12 @@
   - Regression
 
 ## 1.4. Generative vs Discriminative
+- Generative classifier: model the distribution of individual classes
+– e.g., Lean the language itself
+– Pros: detect outlier, deal with latent variable, better generalization ability – Cons: need more data and more computation to learn distribution
+• Discriminative classifier: learn the boundaries between classes – e.g., know the language difference
+– Pros: better classification performance, efficient.
+– Cons: overfit
 ### 1.4.1. Probabilistic Classifier
 <p align="center">
 <img width="600" alt="Screenshot 2022-04-27 at 19 32 45" src="https://user-images.githubusercontent.com/64508435/165509180-12ddb700-1b07-444b-87ad-2f49626fecd0.png">
