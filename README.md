@@ -22,6 +22,7 @@
 - [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
 ### GPT2
 - [The Illustrated GPT-2 (Visualizing Transformer Language Models)](http://jalammar.github.io/illustrated-gpt2/)
+- [How to generate text: using different decoding methods for language generation with Transformers](https://huggingface.co/blog/how-to-generate)
 ## Todo List
 - [Word Embedding Visualization](https://github.com/marcellusruben/Word_Embedding_Visualization)
 - [Spaces: How to Showcase Your ML Web App Demo in Public](https://towardsdatascience.com/spaces-how-to-showcase-your-ml-web-app-demo-in-public-3a701772959)
