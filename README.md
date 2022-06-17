@@ -19,6 +19,9 @@
 ### BERT Resources
 - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/)
 - [Multi-label Text Classification with BERT using Pytorch](https://kyawkhaung.medium.com/multi-label-text-classification-with-bert-using-pytorch-47011a7313b9)
+
+### GPT2
+- [The Illustrated GPT-2 (Visualizing Transformer Language Models)](http://jalammar.github.io/illustrated-gpt2/)
 ## Todo List
 - [Word Embedding Visualization](https://github.com/marcellusruben/Word_Embedding_Visualization)
 - [Spaces: How to Showcase Your ML Web App Demo in Public](https://towardsdatascience.com/spaces-how-to-showcase-your-ml-web-app-demo-in-public-3a701772959)
