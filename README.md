@@ -19,7 +19,7 @@
 ### BERT Resources
 - [BERT Research - Key Concepts & Sources](http://mccormickml.com/2019/11/11/bert-research-ep-1-key-concepts-and-sources/)
 - [Multi-label Text Classification with BERT using Pytorch](https://kyawkhaung.medium.com/multi-label-text-classification-with-bert-using-pytorch-47011a7313b9)
-
+- [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
 ### GPT2
 - [The Illustrated GPT-2 (Visualizing Transformer Language Models)](http://jalammar.github.io/illustrated-gpt2/)
 ## Todo List
