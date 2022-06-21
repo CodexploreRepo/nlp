@@ -1,3 +1,30 @@
+# Transformer
+
+# Table of contents
+- [Table of contents](#table-of-contents)
+- [1. Introduction](#1-introduction)
+  - [1.1. Self-Attention](#11-self-attention)
+  - [1.2. Position Encoding](#12-position-encoding)
+  - [1.3. Transformer](#13-transformer)
+
+# 1. Introduction
+## 1.1. Self-Attention
+## 1.2. Position Encoding
+## 1.3. Transformer
+- In December 2017, Google Brain and Google Research published the seminal Vaswani et al., Attention is All You Need paper. The Transformer was born. The Transformer outperformed the existing state-of-the-art NLP models.
+- The idea of the attention head of the Transformer is to do away with recurrent neural network features.
+### 1.3.1. Structure of Transformer
+- The original Transformer model is a stack of 6 layers (6-layer encoder stack on the left and a 6-layer decoder stack on the right). 
+  - The output of layer `l` is the input of layer `l+1` until the final prediction is reached. 
+- On the left, the inputs enter the encoder side of the Transformer through an attention sublayer and a feedforward sublayer.
+- On the right, the target outputs go into the decoder side of the Transformer through two attention sublayers and a feedforward network sublayer.
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/174724427-238a19c9-77d8-443c-8366-e3cf7070fd83.png" width="300" />
+</p>
+
+
+
+[(Back to top)](#table-of-contents)
 
 # Self-Attention
 - RNN: to compute 2nd time stamp, we need to wait for the output of the 1st time stamp to finish computation.
