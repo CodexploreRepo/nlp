@@ -23,6 +23,10 @@
 ### GPT2
 - [The Illustrated GPT-2 (Visualizing Transformer Language Models)](http://jalammar.github.io/illustrated-gpt2/)
 - [How to generate text: using different decoding methods for language generation with Transformers](https://huggingface.co/blog/how-to-generate)
+
+### Github
+- [Transformers for NLP 2nd - Edition](https://github.com/Denis2054/Transformers-for-NLP-2nd-Edition)
+
 ## Todo List
 - [Word Embedding Visualization](https://github.com/marcellusruben/Word_Embedding_Visualization)
 - [Spaces: How to Showcase Your ML Web App Demo in Public](https://towardsdatascience.com/spaces-how-to-showcase-your-ml-web-app-demo-in-public-3a701772959)
