@@ -9,6 +9,15 @@
 
 # 1. Introduction
 ## 1.1. Self-Attention
+- The attention mechanism is a “word to word” operation. It is actually a token-to-token operation, but we will keep it to the word level to keep the explanation simple. 
+- The attention mechanism will find how each word is related to all other words in a sequence, including the word being analyzed itself. 
+- Let’s examine the following sequence: `The cat sat on the mat.`
+- Attention will run dot products between word vectors and determine the strongest relationships of a word with all the other words, including itself (“cat” and “cat”):
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/175253453-d99c43a1-799c-4595-915e-d9e192010301.png" width="250" />
+</p>
+
+
 ## 1.2. Position Encoding
 ## 1.3. Transformer
 - In December 2017, Google Brain and Google Research published the seminal Vaswani et al., Attention is All You Need paper. The Transformer was born. The Transformer outperformed the existing state-of-the-art NLP models.
@@ -22,7 +31,27 @@
 <img src="https://user-images.githubusercontent.com/64508435/174724427-238a19c9-77d8-443c-8366-e3cf7070fd83.png" width="300" />
 </p>
 
+### 1.3.2. Encoder Stack
+- The layers of the encoder and decoder of the original Transformer model are stacks of layers. 
+- Each layer contains **two main sublayers**: 
+  - A `multi-headed attention` mechanism 
+  - A `fully connected position-wise` feedforward network.
+- **Residual connection** surrounds each main `sublayer`
+  - These connections transport the unprocessed input x of a sublayer to a layer normalization function. 
+  - This way, we are certain that key information such as positional encoding is not lost on the way. The normalized output of each layer is thus:
+  - `LayerNormalization (x + Sublayer(x))`
+- **Multi-head attention** mechanisms perform the same functions from layer 1 to 6. 
+  - However, they do not perform the same tasks. Each layer learns from the previous layer and explores different ways of associating the tokens in the sequence.
+- `d_model` the output of every sublayer of the model has a constant dimension, including the embedding layer and the residual connections. 
+  - Note: Original Transformer architecture, d_model = 512.
+  - d_model has a powerful consequence. Practically all the key operations are dot products. As a result, the dimensions remain stable, which reduces the number of operations to calculate, reduces machine consumption, and makes it easier to trace the information as it flows through the model.
 
+
+
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/175254111-1b48577e-948c-4e2b-a417-baab6c64d65f.png" width="200" />
+</p>
 
 [(Back to top)](#table-of-contents)
 
