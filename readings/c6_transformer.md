@@ -93,6 +93,7 @@ def positional_encoding(pos,pe):
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/175322405-7d851365-0d28-4f6c-9e01-f8a71ab3bad9.png" width="300" />
 </p>
+
 - For example: 
   - `y1` = word embedding of "black"
   - `pe(2)` = positional vector we obtained with positional encoding functions. 
@@ -101,6 +102,7 @@ def positional_encoding(pos,pe):
     - The solution is straightforward, but might lose the information of the word embedding as being minized by the positional encoding vector. 
   - Solution: one of the solution is to add an arbitrary value to `y1` (the word embedding of black)
     - `y1 * math.sqrt(d_model)` & then now can add the positional vector to the embedding vector of the word black, which are both of the same size (512)
+
 ```Python
 for i in range(0, 512,2):
   pe[0][i] = math.sin(pos / (10000 ** ((2 * i)/d_model)))
@@ -109,6 +111,11 @@ for i in range(0, 512,2):
   pe[0][i+1] = math.cos(pos / (10000 ** ((2 * i)/d_model)))
   pc[0][i+1] = (y[0][i+1]*math.sqrt(d_model))+ pe[0][i+1] #y1 * math.sqrt(d_model) + pe(2)
 ```
+
+- The positional encoding of each word now contains the initial word embedding information and the positional encoding values.
+- The output of positional encoding leads to the multi-head attention sublayer.
+
+
 
 [(Back to top)](#table-of-contents)
 
