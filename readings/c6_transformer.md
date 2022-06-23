@@ -6,6 +6,9 @@
   - [1.1. Self-Attention](#11-self-attention)
   - [1.2. Position Encoding](#12-position-encoding)
   - [1.3. Transformer](#13-transformer)
+- [2. Encoder Stack of Transformer](#2-encoder-stack-of-transformer)
+  - [2.1. Input embedding](#21-input-embedding) 
+
 
 # 1. Introduction
 ## 1.1. Self-Attention
@@ -31,7 +34,7 @@
 <img src="https://user-images.githubusercontent.com/64508435/174724427-238a19c9-77d8-443c-8366-e3cf7070fd83.png" width="300" />
 </p>
 
-### 1.3.2. Encoder Stack
+# 2. Encoder Stack of Transformer
 - The layers of the encoder and decoder of the original Transformer model are stacks of layers. 
 - Each layer contains **two main sublayers**: 
   - A `multi-headed attention` mechanism 
@@ -45,9 +48,6 @@
 - `d_model` the output of every sublayer of the model has a constant dimension, including the embedding layer and the residual connections. 
   - Note: Original Transformer architecture, d_model = 512.
   - d_model has a powerful consequence. Practically all the key operations are dot products. As a result, the dimensions remain stable, which reduces the number of operations to calculate, reduces machine consumption, and makes it easier to trace the information as it flows through the model.
-
-
-
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/175254111-1b48577e-948c-4e2b-a417-baab6c64d65f.png" width="200" />
