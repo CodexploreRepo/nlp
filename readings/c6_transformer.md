@@ -4,10 +4,10 @@
 - [Table of contents](#table-of-contents)
 - [1. Introduction](#1-introduction)
   - [1.1. Self-Attention](#11-self-attention)
-  - [1.2. Position Encoding](#12-position-encoding)
   - [1.3. Transformer](#13-transformer)
 - [2. Encoder Stack of Transformer](#2-encoder-stack-of-transformer)
   - [2.1. Input embedding](#21-input-embedding) 
+  - [2.2. Position Encoding](#22-position-encoding)
 
 
 # 1. Introduction
@@ -52,6 +52,19 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/64508435/175254111-1b48577e-948c-4e2b-a417-baab6c64d65f.png" width="200" />
 </p>
+
+## 2.1. Input embedding
+- The **input embedding** sublayer converts the *input tokens* to vectors of dimension *dmodel = 512* using learned embeddings in the original Transformer model.
+- A **tokenizer** will transform a sentence into tokens. 
+  - Each tokenizer has its methods, such as BPE, word piece, and sentence piece methods. The Transformer initially used BPE, but other models use other methods.
+  - `the Transformer is an innovative NLP model!` &#8594; `['the', 'transform', 'er', 'is', 'an', 'innovative', 'n', 'l', 'p', 'model', '!']`
+  - Note 1: tokenizer normalized the string to *lowercase* and *truncated* it into subparts. 
+  - Note 2: tokenizer will generally provide an *integer representation* that will be used for the embedding process. 
+  ```Python
+  text = "The cat slept on the couch.It was too tired to get up."
+  tokenized text= [1996, 4937, 7771, 2006, 1996, 6411, 1012, 2009, 2001, 2205, 5458, 2000, 2131, 2039, 1012]
+  ```
+## 2.2. Position Encoding
 
 [(Back to top)](#table-of-contents)
 
