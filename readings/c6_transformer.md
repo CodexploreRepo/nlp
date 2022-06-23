@@ -8,6 +8,7 @@
 - [2. Encoder Stack of Transformer](#2-encoder-stack-of-transformer)
   - [2.1. Input embedding](#21-input-embedding) 
   - [2.2. Position Encoding](#22-position-encoding)
+  - [2.3. Adding Positional Encoding to Input Embedding Vector](#23-adding-positional-encoding-to-input-embedding-vector)
 
 
 # 1. Introduction
@@ -53,6 +54,8 @@
 <img src="https://user-images.githubusercontent.com/64508435/175254111-1b48577e-948c-4e2b-a417-baab6c64d65f.png" width="200" />
 </p>
 
+[(Back to top)](#table-of-contents)
+
 ## 2.1. Input embedding
 - The **input embedding** sublayer converts the *input tokens* to vectors of dimension *dmodel = 512* using learned embeddings in the original Transformer model.
 - A **tokenizer** will transform a sentence into tokens. 
@@ -64,7 +67,33 @@
   text = "The cat slept on the couch.It was too tired to get up."
   tokenized text= [1996, 4937, 7771, 2006, 1996, 6411, 1012, 2009, 2001, 2205, 5458, 2000, 2131, 2039, 1012]
   ```
+- The Transformer contains a learned embedding sublayer. Many embedding methods can be applied to the tokenized input.
+
 ## 2.2. Position Encoding
+- The idea is to add a positional encoding value to the input embedding instead of having additional vectors to describe the position of a token in a sequence.
+- There are many ways to achieve positional encoding. This section will focus on the designers’ clever way to use a unit sphere to represent positional encoding with sine and cosine values that will thus remain small but useful.
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/175315787-bd88472b-9c1c-4d97-9c77-5b22a1366cf4.png" width="300" /><br>
+<img src="https://user-images.githubusercontent.com/64508435/175316112-50c76601-66a0-4f2f-a10d-ce1b6d03724a.png" width="300" />
+</p>
+
+- From the above formula, the sine function will be applied to the even dim  and the cosine function to the odd dim.
+
+```Python
+def positional_encoding(pos,pe):
+  for i in range(0, 512,2):
+           pe[0][i] = math.sin(pos / (10000 ** ((2 * i)/d_model)))
+           pe[0][i+1] = math.cos(pos / (10000 ** ((2 * i)/d_model)))
+  return pe
+```
+
+## 2.3. Adding Positional Encoding to Input Embedding Vector
+- The authors of the Transformer found a simple way by merely adding the positional encoding vector to the word embedding vector
+<p align="center">
+<img src="https://user-images.githubusercontent.com/64508435/175322405-7d851365-0d28-4f6c-9e01-f8a71ab3bad9.png" width="300" />
+</p>
+
 
 [(Back to top)](#table-of-contents)
 
